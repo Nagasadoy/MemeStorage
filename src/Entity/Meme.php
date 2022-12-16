@@ -20,4 +20,9 @@ class Meme
     {
         return $this->id;
     }
+
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
 }

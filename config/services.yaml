@@ -8,6 +8,11 @@ parameters:
     app.wrap: '%env(WRAP)%'
 
 services:
+
+    _instanceof:
+        App\Service\Mail\MailerInterface:
+            tags: ['app.custom_mailer']
+
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -37,12 +42,31 @@ services:
 #        arguments:
 #            $wrapSymbol: '*'
 
+#    App\Service\Mail\FirstMailer:
+#        tags: ['app.custom_mailer']
+#
+#    App\Service\Mail\SecondMailer:
+#        tags: ['app.custom_mailer']
+
+    App\Service\Mail\MailTransport:
+        arguments:
+            - !tagged_iterator app.custom_mailer
+
     App\Service\Complex:
         configurator: ['@App\Configure\ComplexConfigurator', 'configure']
 
     App\Service\MyService:
+        tags: ['app.my_service']
         calls:
             - setWrapper: ['@App\Service\WrapperClass']
 
     App\Service\Tower:
         factory: ['App\Service\TowerFactory', 'createRedTower']
+
+#    App\Listener\ExceptionListener:
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception }
+
+#    App\Listener\MyListener:
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.response, method: onResponse }

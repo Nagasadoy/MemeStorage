@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Meme;
 use App\Service\MyService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,11 +14,12 @@ class TestController extends AbstractController
     #[Route('/', name:'index', methods: ['GET'])]
     public function index(MyService $myService): Response
     {
-//        $stateApp = $this->getParameter('app.state');
+//        $stateApp = $this->getParameter('app.state'); // получить переменную окружения прямо из контроллера
 
         return $this->json([
             'msg' => 'hello world',
-            'state' => $myService->getState()
+            'state' => $myService->getState(),
+            'exec' => $myService->exec()
         ]);
     }
 

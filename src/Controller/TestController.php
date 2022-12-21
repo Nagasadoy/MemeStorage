@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Meme;
 use App\Service\MyService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -50,9 +51,19 @@ class TestController extends AbstractController
         throw $this->createNotFoundException('мем не найден');
     }
 
-    #[Route('/{id}', name: 'meme')]
-    public function getMeme(Meme $meme)
+//    #[Route('/{id}', name: 'meme')]
+//    public function getMeme(Meme $meme)
+//    {
+//        return $this->json(['fileName' => $meme->getFileName()]);
+//    }
+
+    #[Route(path:'/foundation', name: 'meme_foundation', methods: ['POST'])]
+    public function httpFoundation(Request $request): Response
     {
-        return $this->json(['fileName' => $meme->getFileName()]);
+        $content = $request->toArray();
+
+        dd($content);
+
+        return new Response();
     }
 }

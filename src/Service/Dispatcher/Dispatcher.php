@@ -13,8 +13,6 @@ class Dispatcher
         $dispatcher = new EventDispatcher();
         $listener = new AcmeListener();
 
-//        $dispatcher->addListener('acme.foo.action', [$listener, 'onFooAction']);
-
         $dispatcher->addListener('acme.foo.action', static function (Event $event) {
             dump($event);
         });

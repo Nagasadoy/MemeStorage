@@ -6,6 +6,7 @@
 parameters:
     app.state: '%env(DUMMY_VAR)%'
     app.wrap: '%env(WRAP)%'
+    database_type: '%env(DATABASE_TYPE)%'
 
 services:
 
@@ -62,6 +63,21 @@ services:
 
     App\Service\Tower:
         factory: ['App\Service\TowerFactory', 'createRedTower']
+
+    app.mysql_lock:
+        class: App\Service\Lock\MysqlLock
+
+    app.postresql_lock:
+        class: App\Service\Lock\PostgresqlLock
+
+    app.lock:
+        synthetic: true
+        public: true
+        tags:
+            - {name: auto_alias, format: "app.%database_type%_lock" }
+
+    app.x_smaller_four_listener:
+        class: App\Service\Dispatcher\XSmallerFourListener
 
 #    App\Listener\ExceptionListener:
 #        tags:

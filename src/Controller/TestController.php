@@ -57,13 +57,16 @@ class TestController extends AbstractController
 //        return $this->json(['fileName' => $meme->getFileName()]);
 //    }
 
-    #[Route(path:'/foundation', name: 'meme_foundation', methods: ['POST'])]
+    #[Route(path:'/foundation', name: 'foundation', methods: ['POST'])]
     public function httpFoundation(Request $request): Response
     {
         $content = $request->toArray();
 
         dd($content);
 
+        $response = new Response();
+
+        $response->prepare();
         return new Response();
     }
 }

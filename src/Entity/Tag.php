@@ -20,4 +20,9 @@ class Tag
     {
         return $this->id;
     }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
 }

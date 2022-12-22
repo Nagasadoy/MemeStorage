@@ -32,6 +32,9 @@ RUN set -e; \
       libzip-dev \
       locales \
       locales-all \
+      librabbitmq-dev \
+    && pecl install amqp \
+    && docker-php-ext-enable amqp \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install \

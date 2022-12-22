@@ -38,3 +38,14 @@ services:
       depends_on:
         - php
         - mysql
+    ###> symfony/mailer ###
+    mailer:
+      image: schickling/mailcatcher
+      ports: [ 1025, 1080 ]
+    ###< symfony/mailer ###
+    rabbitmq:
+      image: rabbitmq:3.8.7-management
+      container_name: ofset_rabbitmq
+      ports:
+        - 5672:5672
+        - 15672:15672

@@ -33,6 +33,9 @@ class ExceptionListener
             $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
+//        $response->setStatusCode(Response::HTTP_OK);
+//        $response->headers->replace($exception->getHeaders());
+
         // sends the modified response object to the event
         $event->setResponse($response);
     }

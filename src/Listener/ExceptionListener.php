@@ -3,6 +3,7 @@
 namespace App\Listener;
 
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -14,15 +15,15 @@ class ExceptionListener
     {
         // You get the exception object from the received event
         $exception = $event->getThrowable();
-        $message = sprintf(
-            'My Error says: %s with code: %s',
-            $exception->getMessage(),
-            $exception->getCode()
-        );
+//        $message = sprintf(
+//            'My Error says: %s with code: %s',
+//            $exception->getMessage(),
+//            $exception->getCode()
+//        );
 
         // Customize your response object to display the exception details
-        $response = new Response();
-        $response->setContent($message);
+        $response = new JsonResponse();
+        $response->setContent($exception->getMessage());
 
         // HttpExceptionInterface is a special type of exception that
         // holds status code and header details

@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
+        "friendsofsymfony/rest-bundle": "^3.4",
         "ramsey/uuid": "^4.6",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/amqp-messenger": "6.2.*",
@@ -25,6 +26,7 @@
         "symfony/runtime": "6.2.*",
         "symfony/security-bundle": "6.2.*",
         "symfony/serializer": "6.2.*",
+        "symfony/validator": "6.2.*",
         "symfony/yaml": "6.2.*"
     },
     "config": {

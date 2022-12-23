@@ -5,11 +5,17 @@ framework:
 
         transports:
 
+        # type exchange (fanout - отправляет сразу во все очереди с name = name (по умолчанию создается exchange messages и он привязан ко всем очередям)
+        # Если указать у exchange другое имя, тогда записи будут только в ту очередь у которой тоже имя
+        # Если указать exchange type=direct, тогда отправится только туда где точно совпадает ключ привязки и ключ маршрутизации
+        # (как я понял это exchange name и queues: имя)
+
              async_prority_normal:
                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                options:
                  exchange:
                    name: normal
+                   type: direct
                  queues:
                    normal: ~
 
@@ -18,11 +24,12 @@ framework:
                options:
                  exchange:
                    name: high
+                   type: direct
                  queues:
                    high: ~
 
         routing:
-             'App\Message\SmsNotification': async_prority_normal
+             'App\Message\SmsNotification': async_prority_high
 
 # when@test:
 #    framework:

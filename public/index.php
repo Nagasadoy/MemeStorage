@@ -4,6 +4,7 @@ use App\Kernel;
 use App\Service\Messenger\ImportantActionToEmailSender;
 use App\Service\Messenger\MyMessage;
 use App\Service\Messenger\MyMessageHandler;
+use App\Service\Serializer\Person;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -21,6 +22,10 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
 
@@ -28,6 +33,25 @@ return function (array $context) {
     return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
 };
 
+// Начало сериалайзера
+//$encoders = [new XmlEncoder(), new JsonEncoder()];
+//$normalizers = [new ObjectNormalizer()];
+//
+//$serializer = new Serializer($normalizers, $encoders);
+//
+//$person = new Person('ivan', 45, 'male');
+//
+//$person->setHighEducation(false);
+//
+//$jsonContent = $serializer->serialize($person,'json');
+//
+//$person2 = $serializer->deserialize('{"name":"ivan","age":22,"gender":"male","hasHighEducation":false}',
+//    Person::class,
+//    'json'
+//);
+
+//var_dump($person2);
+// Конец сериалайзера //
 
 //$handler = new MyMessageHandler();
 //

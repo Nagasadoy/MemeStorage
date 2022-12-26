@@ -50,7 +50,7 @@ class ValidatorController extends AbstractController
 //            'tag' => $tag->getTitle()
 //        ]);
 
-        $validationEntity = new ValidationEntity('fi', 11, 'female');
+        $validationEntity = new ValidationEntity('авfi', 21, 'female');
 
         $errors = $validator->validate($validationEntity);
         if (count($errors) > 0) {

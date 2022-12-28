@@ -79,6 +79,20 @@ services:
     app.x_smaller_four_listener:
         class: App\Service\Dispatcher\XSmallerFourListener
 
+
+    App\Mail\TransportChain: ~
+
+
+    MailerSmtpTransport:
+        synthetic: true
+        tags:
+            - { name: 'app.mail_transport', alias: 'smtp' }
+
+    MailerSendmailTransport:
+        synthetic: true
+        tags:
+            - { name: 'app.mail_transport', alias: 'sendmail' }
+
 #    App\Listener\ExceptionListener:
 #        tags:
 #            - { name: kernel.event_listener, event: kernel.exception }

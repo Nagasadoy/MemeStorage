@@ -12,7 +12,7 @@ class MailController extends AbstractController
     #[Route('/mail')]
     public function index(MailTransport $mailTransport): Response
     {
-        throw new \Exception('fdsfs');
+//        throw new \Exception('fdsfs');
         $mailTransport->sendWithAllMailers();
         return new Response();
     }
